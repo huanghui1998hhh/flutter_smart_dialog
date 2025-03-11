@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/src/kit/view_utils.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key, required this.msg}) : super(key: key);
+  const LoadingWidget({
+    Key? key,
+    required this.msg,
+    this.textAlign,
+  }) : super(key: key);
 
   ///loading msg
   final String msg;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,11 @@ class LoadingWidget extends StatelessWidget {
         //msg
         Container(
           margin: const EdgeInsets.only(top: 20),
-          child: Text(msg, style: TextStyle(color: ThemeStyle.textColor)),
+          child: Text(
+            msg,
+            style: TextStyle(color: ThemeStyle.textColor),
+            textAlign: textAlign,
+          ),
         ),
       ]),
     );

@@ -9,9 +9,9 @@ class FlutterSmartNotifyStyle {
     this.errorBuilder,
   });
 
-  final Widget Function(String msg)? successBuilder;
-  final Widget Function(String msg)? failureBuilder;
-  final Widget Function(String msg)? warningBuilder;
-  final Widget Function(String msg)? alertBuilder;
-  final Widget Function(String msg)? errorBuilder;
+  final Widget Function(String msg, TextAlign? textAlign)? successBuilder;
+  final Widget Function(String msg, TextAlign? textAlign)? failureBuilder;
+  final Widget Function(String msg, TextAlign? textAlign)? warningBuilder;
+  final Widget Function(String msg, TextAlign? textAlign)? alertBuilder;
+  final Widget Function(String msg, TextAlign? textAlign)? errorBuilder;
 }

@@ -6,9 +6,11 @@ class NotifyAlter extends StatelessWidget {
   const NotifyAlter({
     Key? key,
     required this.msg,
+    this.textAlign,
   }) : super(key: key);
 
   final String msg;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,11 @@ class NotifyAlter extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(top: 5),
-          child: Text(msg, style: TextStyle(color: ThemeStyle.textColor)),
+          child: Text(
+            msg,
+            style: TextStyle(color: ThemeStyle.textColor),
+            textAlign: textAlign,
+          ),
         ),
       ]),
     );

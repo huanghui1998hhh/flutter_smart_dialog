@@ -6,9 +6,11 @@ class NotifySuccess extends StatelessWidget {
   const NotifySuccess({
     Key? key,
     required this.msg,
+    this.textAlign,
   }) : super(key: key);
 
   final String msg;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,11 @@ class NotifySuccess extends StatelessWidget {
         Icon(Icons.check, size: 22, color: ThemeStyle.textColor),
         Container(
           margin: const EdgeInsets.only(top: 5),
-          child: Text(msg, style: TextStyle(color: ThemeStyle.textColor)),
+          child: Text(
+            msg,
+            style: TextStyle(color: ThemeStyle.textColor),
+            textAlign: textAlign,
+          ),
         ),
       ]),
     );

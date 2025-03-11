@@ -14,8 +14,10 @@ import 'widget/default/notify_success.dart';
 import 'widget/default/notify_warning.dart';
 import 'widget/default/toast_widget.dart';
 
-typedef FlutterSmartToastBuilder = Widget Function(String msg);
-typedef FlutterSmartLoadingBuilder = Widget Function(String msg);
+typedef FlutterSmartToastBuilder = Widget Function(
+    String msg, TextAlign? textAlign);
+typedef FlutterSmartLoadingBuilder = Widget Function(
+    String msg, TextAlign? textAlign);
 typedef FlutterSmartStyleBuilder = Widget Function(Widget child);
 
 class FlutterSmartDialog extends StatefulWidget {
@@ -134,24 +136,28 @@ class _FlutterSmartDialogState extends State<FlutterSmartDialog> {
 
     // default toast / loading / notify
     if (initType.contains(SmartInitType.toast)) {
-      DialogProxy.instance.toastBuilder =
-          widget.toastBuilder ?? (String msg) => ToastWidget(msg: msg);
+      DialogProxy.instance.toastBuilder = widget.toastBuilder ??
+          (String msg, TextAlign? textAlign) =>
+              ToastWidget(msg: msg, textAlign: textAlign);
     }
     if (initType.contains(SmartInitType.loading)) {
-      DialogProxy.instance.loadingBuilder =
-          widget.loadingBuilder ?? (String msg) => LoadingWidget(msg: msg);
+      DialogProxy.instance.loadingBuilder = widget.loadingBuilder ??
+          (String msg, TextAlign? textAlign) =>
+              LoadingWidget(msg: msg, textAlign: textAlign);
     }
     if (initType.contains(SmartInitType.notify)) {
       var notify = widget.notifyStyle;
       DialogProxy.instance.notifyStyle = FlutterSmartNotifyStyle(
-        successBuilder:
-            notify?.successBuilder ?? (msg) => NotifySuccess(msg: msg),
-        failureBuilder:
-            notify?.failureBuilder ?? (msg) => NotifyFailure(msg: msg),
-        warningBuilder:
-            notify?.warningBuilder ?? (msg) => NotifyWarning(msg: msg),
-        alertBuilder: notify?.alertBuilder ?? (msg) => NotifyAlter(msg: msg),
-        errorBuilder: notify?.errorBuilder ?? (msg) => NotifyError(msg: msg),
+        successBuilder: notify?.successBuilder ??
+            (msg, textAlign) => NotifySuccess(msg: msg, textAlign: textAlign),
+        failureBuilder: notify?.failureBuilder ??
+            (msg, textAlign) => NotifyFailure(msg: msg, textAlign: textAlign),
+        warningBuilder: notify?.warningBuilder ??
+            (msg, textAlign) => NotifyWarning(msg: msg, textAlign: textAlign),
+        alertBuilder: notify?.alertBuilder ??
+            (msg, textAlign) => NotifyAlter(msg: msg, textAlign: textAlign),
+        errorBuilder: notify?.errorBuilder ??
+            (msg, textAlign) => NotifyError(msg: msg, textAlign: textAlign),
       );
     }
 

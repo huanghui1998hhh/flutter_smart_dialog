@@ -592,6 +592,7 @@ class SmartDialog {
     required NotifyType notifyType,
     WidgetBuilder? builder,
     SmartDialogController? controller,
+    TextAlign? textAlign,
     Alignment? alignment,
     bool? clickMaskDismiss,
     bool? usePenetrate,
@@ -622,15 +623,15 @@ class SmartDialog {
           Widget? widget;
           var notifyStyle = DialogProxy.instance.notifyStyle;
           if (notifyType == NotifyType.success) {
-            widget = notifyStyle.successBuilder?.call(msg);
+            widget = notifyStyle.successBuilder?.call(msg, textAlign);
           } else if (notifyType == NotifyType.failure) {
-            widget = notifyStyle.failureBuilder?.call(msg);
+            widget = notifyStyle.failureBuilder?.call(msg, textAlign);
           } else if (notifyType == NotifyType.warning) {
-            widget = notifyStyle.warningBuilder?.call(msg);
+            widget = notifyStyle.warningBuilder?.call(msg, textAlign);
           } else if (notifyType == NotifyType.alert) {
-            widget = notifyStyle.alertBuilder?.call(msg);
+            widget = notifyStyle.alertBuilder?.call(msg, textAlign);
           } else if (notifyType == NotifyType.error) {
-            widget = notifyStyle.errorBuilder?.call(msg);
+            widget = notifyStyle.errorBuilder?.call(msg, textAlign);
           }
 
           return widget ?? Container();
@@ -748,6 +749,7 @@ class SmartDialog {
   static Future<T?> showLoading<T>({
     String msg = 'loading...',
     SmartDialogController? controller,
+    TextAlign? textAlign,
     Alignment? alignment,
     bool? clickMaskDismiss,
     SmartAnimationType? animationType,
@@ -772,7 +774,7 @@ class SmartDialog {
         builder: (context) {
           return builder != null
               ? builder(context)
-              : DialogProxy.instance.loadingBuilder(msg);
+              : DialogProxy.instance.loadingBuilder(msg, textAlign);
         },
       ),
       alignment: alignment ?? config.loading.alignment,
@@ -885,6 +887,7 @@ class SmartDialog {
     String msg, {
     SmartDialogController? controller,
     Duration? displayTime,
+    TextAlign? textAlign,
     Alignment? alignment,
     bool? clickMaskDismiss,
     SmartAnimationType? animationType,
@@ -908,7 +911,7 @@ class SmartDialog {
         builder: (context) {
           return builder != null
               ? builder(context)
-              : DialogProxy.instance.toastBuilder(msg);
+              : DialogProxy.instance.toastBuilder(msg, textAlign);
         },
       ),
       displayTime: displayTime ?? config.toast.displayTime,

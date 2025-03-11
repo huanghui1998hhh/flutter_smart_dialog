@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import '../../kit/view_utils.dart';
 
 class ToastWidget extends StatelessWidget {
-  const ToastWidget({Key? key, required this.msg}) : super(key: key);
+  const ToastWidget({
+    Key? key,
+    required this.msg,
+    this.textAlign,
+  }) : super(key: key);
 
   ///toast msg
   final String msg;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,11 @@ class ToastWidget extends StatelessWidget {
         color: ThemeStyle.backgroundColor,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(msg, style: TextStyle(color: ThemeStyle.textColor)),
+      child: Text(
+        msg,
+        style: TextStyle(color: ThemeStyle.textColor),
+        textAlign: textAlign,
+      ),
     );
   }
 }

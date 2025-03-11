@@ -6,9 +6,11 @@ class NotifyFailure extends StatelessWidget {
   const NotifyFailure({
     Key? key,
     required this.msg,
+    this.textAlign,
   }) : super(key: key);
 
   final String msg;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,11 @@ class NotifyFailure extends StatelessWidget {
         Icon(Icons.close, size: 22, color: ThemeStyle.textColor),
         Container(
           margin: const EdgeInsets.only(top: 5),
-          child: Text(msg, style: TextStyle(color: ThemeStyle.textColor)),
+          child: Text(
+            msg,
+            style: TextStyle(color: ThemeStyle.textColor),
+            textAlign: textAlign,
+          ),
         ),
       ]),
     );
